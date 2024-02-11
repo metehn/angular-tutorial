@@ -6,13 +6,13 @@ import {Component} from '@angular/core';
   styleUrl: './product-list.component.css'
 })
 export class ProductListComponent {
-  //name = 'Test'
+  addToCard : number = 0;
   product = {
     name: 'Iphone',
     price: 999,
     color: 'Red',
     discount: 8.5,
-    inStock: 11,
+    inStock: 5,
     pImage: '/assets/images/iphone.png'
   }
 
@@ -20,8 +20,15 @@ export class ProductListComponent {
     return this.product.price - (this.product.price * this.product.discount / 100.0)
   }
 
-  onNameChange(event: any) {
-    //console.log(event.target.value)
-    //this.name = event.target.value
+  decreseCartValue() {
+    if(this.addToCard > 0){
+      this.addToCard--;
+    }
+  }
+
+  increaseCartValue() {
+    if(this.addToCard < this.product.inStock && this.addToCard < 10){
+      this.addToCard++;
+    }
   }
 }
